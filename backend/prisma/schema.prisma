@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  ratings   Rating[]
+  favorites Favorite[]
+  readBooks ReadStatus[]
+}
+
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String
+  author      String
+  imageUrl    String?
+  ratings     Rating[]
+  favorites   Favorite[]
+  readStatus  ReadStatus[]
+}
+
+model Rating {
+  id     Int  @id @default(autoincrement())
+  score  Int
+  userId Int
+  bookId Int
+  user   User @relation(fields: [userId], references: [id])
+  book   Book @relation(fields: [bookId], references: [id])
+}
+
+model Favorite {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  bookId Int
+  user   User @relation(fields: [userId], references: [id])
+  book   Book @relation(fields: [bookId], references: [id])
+}
+
+model ReadStatus {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  bookId Int
+  read   Boolean @default(false)
+  user   User @relation(fields: [userId], references: [id])
+  book   Book @relation(fields: [bookId], references: [id])
+}
