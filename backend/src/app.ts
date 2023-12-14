@@ -4,7 +4,6 @@ import { PrismaClient } from "@prisma/client";
 import cookieParser from "cookie-parser";
 import bookRouter from "./routes/bookRouter";
 import authRouter from "./routes/authRouter";
-import authenticateToken from "./middleware/authenticateToken";
 
 const app = express();
 export const prisma = new PrismaClient();
