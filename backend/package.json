@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
+    "lint": "eslint --fix src test",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
     "vercel-build": "echo hello"
   },
   "keywords": [],
