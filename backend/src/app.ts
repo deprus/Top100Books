@@ -20,7 +20,7 @@ app.use("/api/books", bookRouter);
 app.use("/api/auth", authRouter);
 
 app.get("/", (_req: Request, res: Response) => {
-  res.send("Server is running..., test");
+  res.send("Server is running...");
 });
 
 export default app;
