@@ -20,7 +20,7 @@ export const fetchBooks = createAsyncThunk<BookType[]>(
   async () => {
     try {
       const response = await axios.get<BookType[]>(
-        "https://top100books-dedzitd50-deprus.vercel.app/api/books"
+        "https://top100books-backend-deprus.vercel.app/api/books"
       );
       return response.data;
     } catch (error) {
