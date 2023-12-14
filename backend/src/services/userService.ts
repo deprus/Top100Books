@@ -1,4 +1,4 @@
-import { prisma } from "..";
+import { prisma } from "../app";
 
 async function findByIdentifier(identifier: string) {
   const user =

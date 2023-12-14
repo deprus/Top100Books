@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { prisma } from "..";
 import { Book } from "@prisma/client";
+import { prisma } from "../app";
 
 export default async function fetchBooks(
   _req: Request,
