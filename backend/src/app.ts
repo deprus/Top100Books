@@ -11,7 +11,7 @@ export const prisma = new PrismaClient();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://top100books-dedzitd50-deprus.vercel.app/",
+    origin: "https://top100books-backend-deprus.vercel.app/",
     credentials: true,
   })
 );
