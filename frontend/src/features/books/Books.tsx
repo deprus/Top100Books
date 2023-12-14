@@ -9,7 +9,6 @@ export default function Books() {
   const books = useSelector((state: RootState) => state.books.books);
   const status = useSelector((state: RootState) => state.books.status);
   const error = useSelector((state: RootState) => state.books.error);
-  console.log(books);
 
   useEffect(() => {
     dispatch(fetchBooks());
