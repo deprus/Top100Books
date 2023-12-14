@@ -30,7 +30,7 @@ export default function Book({ book }: BookProps) {
             {[...Array(10)].map((_, i) => {
               const currentRating = i + 1;
               return (
-                <label>
+                <label key={i}>
                   <input
                     type="radio"
                     name="rating"
