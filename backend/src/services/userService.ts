@@ -1,4 +1,4 @@
-import { prisma } from "../server";
+import { prisma } from "..";
 
 async function findByIdentifier(identifier: string) {
   const user =

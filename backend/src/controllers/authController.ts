@@ -3,7 +3,7 @@ import { comparePassword, hashPassword } from "../utils/bcryptUtils";
 import { createUser, findByIdentifier } from "../services/userService";
 import { generateToken } from "../utils/jwtUtils";
 import { User } from "@prisma/client";
-import { prisma } from "../server";
+import { prisma } from "..";
 
 async function signUp(req: Request, res: Response) {
   const { email, username, password } = req.body;

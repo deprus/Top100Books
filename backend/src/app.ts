@@ -19,8 +19,4 @@ app.get("/", (_req: Request, res: Response) => {
   res.send("Server is running...");
 });
 
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () =>
-  console.log(`Server is running at http://localhost:${PORT}`)
-);
+export default app;
