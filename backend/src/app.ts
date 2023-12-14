@@ -19,6 +19,10 @@ app.use(cookieParser());
 app.use("/api/books", bookRouter);
 app.use("/api/auth", authRouter);
 
+app.get("/test", (_req: Request, res: Response) => {
+  res.send("Test");
+});
+
 app.get("/", (_req: Request, res: Response) => {
   res.send("Server is running...");
 });
