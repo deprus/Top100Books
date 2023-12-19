@@ -15,9 +15,14 @@ export default function Header() {
 
   return (
     <header className="mt-6">
-      <h1 className="flex items-center justify-center font-serif text-2xl lg:text-4xl">
-        Top 100 books checklist
-      </h1>
+      <div className="flex flex-col items-center font-serif ">
+        <h1 className="flex items-center justify-center text-2xl lg:text-4xl">
+          Top 100 books checklist
+        </h1>
+        <h2 className="max-w-xs sm:max-w-full">
+          Time Magazine's 100 best English-language novels from 1923-2005
+        </h2>
+      </div>
       <nav>
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-2 md:px-10">
           <Link to="/">
