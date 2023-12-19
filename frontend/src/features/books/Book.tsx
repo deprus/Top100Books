@@ -123,11 +123,11 @@ export default function Book({ book }: BookProps) {
           alt={`${book.title} image`}
           className="w-14 md:w-20"
         />
-        <div className="flex w-full flex-col justify-around p-4">
+        <div className="flex w-full flex-col justify-around sm:px-2">
           <div className="flex w-full justify-between">
-            <h2 className="max-w-[160px] sm:max-w-xl">{book.title}</h2>
+            <h2 className="max-w-[130px] sm:max-w-xl">{book.title}</h2>
             <div
-              className={`flex h-10 gap-2 rounded-lg ${
+              className={`flex h-10 gap-1 rounded-lg ${
                 isClicked && status === "toRead"
                   ? "bg-red-500"
                   : isClicked && status === "read"
@@ -155,7 +155,7 @@ export default function Book({ book }: BookProps) {
               </>
             </div>
           </div>
-          <p>Author: {book.author}</p>
+          <div>Author: {book.author}</div>
         </div>
       </div>
     </div>
