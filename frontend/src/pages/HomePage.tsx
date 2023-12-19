@@ -9,6 +9,9 @@ export default function HomePage() {
   const [filter, setFilter] = useState<"all" | "read" | "toRead">("all");
   return (
     <>
+      <h2 className="mx-auto my-2 max-w-xs sm:max-w-full">
+        Time Magazine's 100 best English-language novels from 1923-2005
+      </h2>
       {user && <Filter filter={filter} setFilter={setFilter} />}
       <Books filter={filter} />
     </>
