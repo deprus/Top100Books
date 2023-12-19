@@ -25,7 +25,7 @@ export default function Book({ book }: BookProps) {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:3000/api/books/updateStatus",
+        "https://top100books-backend-deprus.vercel.app/api/books/updateStatus",
         {
           method: "PATCH",
           headers: {
