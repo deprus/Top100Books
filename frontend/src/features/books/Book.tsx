@@ -116,12 +116,16 @@ export default function Book({ book }: BookProps) {
   }, [book, user]);
 
   return (
-    <div className="md: mx-auto w-full max-w-2xl border border-black">
+    <div className="mx-auto w-full max-w-2xl border border-black">
       <div className="flex">
-        <img src={book.imageUrl} alt={`${book.title} image`} className="w-20" />
+        <img
+          src={book.imageUrl}
+          alt={`${book.title} image`}
+          className="w-14 md:w-20"
+        />
         <div className="flex w-full flex-col justify-around p-4">
           <div className="flex w-full justify-between">
-            <h2 className="max-w-[180px] sm:max-w-xl">{book.title}</h2>
+            <h2 className="max-w-[160px] sm:max-w-xl">{book.title}</h2>
             <div
               className={`flex h-10 gap-2 rounded-lg ${
                 isClicked && status === "toRead"

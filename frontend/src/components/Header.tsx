@@ -19,7 +19,7 @@ export default function Header() {
         Top 100 books checklist
       </h1>
       <nav>
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-10">
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-2 md:px-10">
           <Link to="/">
             <button className="rounded bg-orange-800 px-4 py-2 text-white hover:bg-orange-900">
               Home
