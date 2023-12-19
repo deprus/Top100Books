@@ -11,7 +11,7 @@ export const prisma = new PrismaClient();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://top100booksdp.vercel.app", "http://localhost:5173"],
+    origin: ["https://top100books.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );
