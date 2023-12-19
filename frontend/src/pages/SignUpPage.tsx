@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { AppDispatch } from "../app/store";
 import { signUp } from "../features/auth/authSlice";
+import { useAppDispatch } from "../app/store";
 
 type SignUpData = {
   email: string;
@@ -18,7 +17,7 @@ export default function SignUp() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpData>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -34,22 +33,22 @@ export default function SignUp() {
   }
 
   return (
-    <div className="bg-amber-200 p-6 space-y-4 w-full rounded-lg shadow max-w-md border mx-auto">
+    <div className="mx-auto mt-6 w-full max-w-md space-y-4 rounded-lg border bg-amber-200 p-6 shadow">
       <h1 className="text-2xl font-bold">Create your account</h1>
       <form onSubmit={handleSubmit(onSignUp)} className="space-y-4">
         <div>
-          <label className="block mb-2 font-medium">Email</label>
+          <label className="mb-2 block font-medium">Email</label>
           <input
             type="email"
             {...register("email", {
               required: true,
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors.email && <p>Email is required and must be valid</p>}
         </div>
         <div>
-          <label className="block mb-2 font-medium ">Username</label>
+          <label className="mb-2 block font-medium ">Username</label>
           <input
             type="username"
             {...register("username", {
@@ -59,14 +58,14 @@ export default function SignUp() {
                 message: "Username should be at least 2 characters long",
               },
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors.username && (
             <span>Username must be at least 2 characters long</span>
           )}
         </div>
         <div>
-          <label className="block mb-2 font-medium ">Password</label>
+          <label className="mb-2 block font-medium ">Password</label>
           <input
             type="password"
             {...register("password", {
@@ -76,30 +75,30 @@ export default function SignUp() {
                 message: "Password should be at least 8 characters long",
               },
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors.password && (
             <span>Password must be at least 8 characters long</span>
           )}
         </div>
         <div>
-          <label className="block mb-2 font-medium ">Confirm password</label>
+          <label className="mb-2 block font-medium ">Confirm password</label>
           <input
             type="password"
             {...register("_confirmPassword", {
               validate: (value, formValues) => value === formValues.password,
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors._confirmPassword && <span>Passwords do not match</span>}
         </div>
         <button
           type="submit"
-          className="w-full hover:bg-orange-900  rounded-lg px-5 py-2.5 text-center bg-orange-800 text-white"
+          className="w-full rounded-lg  bg-orange-800 px-5 py-2.5 text-center text-white hover:bg-orange-900"
         >
           Create an account
         </button>
-        <p className="text-sm font">
+        <p className="font text-sm">
           Already have an account?{" "}
           <Link
             to="/signin"

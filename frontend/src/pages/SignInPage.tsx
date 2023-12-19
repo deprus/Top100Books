@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../features/auth/authSlice";
-import { AppDispatch } from "../app/store";
+import { useAppDispatch } from "../app/store";
 
 type SignInData = {
   email: string;
@@ -16,7 +15,7 @@ export default function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignInData>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -31,21 +30,21 @@ export default function SignIn() {
   }
 
   return (
-    <div className="bg-amber-200 p-6 space-y-4 w-full rounded-lg shadow max-w-md border mx-auto">
+    <div className="mx-auto mt-6 w-full max-w-md space-y-4 rounded-lg border bg-amber-200 p-6 shadow">
       <h1 className="text-2xl font-bold">Sign in to your account</h1>
       <form onSubmit={handleSubmit(onSignIn)} className="space-y-4">
         <div>
-          <label className="block mb-2 font-medium">Email/Username</label>
+          <label className="mb-2 block font-medium">Email/Username</label>
           <input
             {...register("email", {
               required: true,
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors.email && <p>Email is required and must be valid</p>}
         </div>
         <div>
-          <label className="block mb-2 font-medium ">Password</label>
+          <label className="mb-2 block font-medium ">Password</label>
           <input
             type="password"
             {...register("password", {
@@ -55,7 +54,7 @@ export default function SignIn() {
                 message: "Password should be at least 8 characters long",
               },
             })}
-            className="border rounded-lg block w-full p-2.5"
+            className="block w-full rounded-lg border p-2.5"
           />
           {errors.password && (
             <span>Password must be at least 8 characters long</span>
@@ -63,11 +62,11 @@ export default function SignIn() {
         </div>
         <button
           type="submit"
-          className="w-full hover:bg-orange-900  rounded-lg px-5 py-2.5 text-center bg-orange-800 text-white"
+          className="w-full rounded-lg  bg-orange-800 px-5 py-2.5 text-center text-white hover:bg-orange-900"
         >
           Sign in
         </button>
-        <p className="text-sm font">
+        <p className="font text-sm">
           Don't have an account yet?{" "}
           <Link
             to="/signup"

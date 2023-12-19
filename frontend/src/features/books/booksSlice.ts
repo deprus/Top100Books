@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../config/axiosConfig";
 
 export type BookType = {
   id: number;
   title: string;
   author: string;
   imageUrl: string;
-  ratings: number[];
+  readBooks: Array<{ id: number; userId: number; bookId: number }>;
+  toReadBooks: Array<{ id: number; userId: number; bookId: number }>;
 };
 
 type BooksState = {
@@ -19,14 +20,24 @@ export const fetchBooks = createAsyncThunk<BookType[]>(
   "books/fetchBooks",
   async () => {
     try {
-      const response = await axios.get<BookType[]>(
-        "https://top100books-backend-deprus.vercel.app/api/books"
-      );
+      const response = await axiosInstance.get<BookType[]>("books");
       return response.data;
     } catch (error) {
       throw Error("Error fetching books");
     }
-  }
+  },
+);
+
+export const fetchBookById = createAsyncThunk(
+  "books/fetchBookById",
+  async (bookId: number) => {
+    try {
+      const response = await axiosInstance.get<BookType>(`books/${bookId}`);
+      return response.data;
+    } catch (error) {
+      throw Error("Error fetching the book");
+    }
+  },
 );
 
 const initialState: BooksState = {
@@ -51,6 +62,10 @@ const booksSlice = createSlice({
       .addCase(fetchBooks.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message ?? "Error fetching books";
+      })
+      .addCase(fetchBookById.fulfilled, (state, action) => {
+        const index = state.books.findIndex((b) => b.id === action.payload.id);
+        state.books[index] = action.payload;
       });
   },
 });

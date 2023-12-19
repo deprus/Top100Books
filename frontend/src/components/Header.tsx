@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { AppDispatch, RootState } from "../app/store";
+import { RootState, useAppDispatch } from "../app/store";
 import { signOut } from "../features/auth/authSlice";
 
 export default function Header() {
   const authState = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   function onLogOut() {
@@ -14,35 +14,43 @@ export default function Header() {
   }
 
   return (
-    <header className="w-full">
-      <div className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-10">
-        <Link to="/">
-          <button className="bg-orange-800 hover:bg-orange-900 px-4 py-2 text-white rounded">
-            Home
-          </button>
-        </Link>
-        {authState.user ? (
-          <button
-            onClick={() => onLogOut()}
-            className="bg-orange-800 hover:bg-orange-900 px-4 py-2 text-white rounded"
-          >
-            Log out
-          </button>
-        ) : (
-          <div className="flex gap-4">
-            <Link to="/signin">
-              <button className="bg-orange-800 hover:bg-orange-900 px-4 py-2 text-white rounded">
-                Sign in
+    <header className="mt-6">
+      <h1 className="flex items-center justify-center font-serif text-2xl lg:text-4xl">
+        Top 100 books checklist
+      </h1>
+      <nav>
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-10">
+          <Link to="/">
+            <button className="rounded bg-orange-800 px-4 py-2 text-white hover:bg-orange-900">
+              Home
+            </button>
+          </Link>
+          {authState.user ? (
+            <div className="flex items-center gap-6">
+              <div className="text-xl">Welcome, {authState.user.username}</div>
+              <button
+                onClick={() => onLogOut()}
+                className="rounded bg-orange-800 px-4 py-2 text-white hover:bg-orange-900"
+              >
+                Log out
               </button>
-            </Link>
-            <Link to="/signup">
-              <button className="bg-orange-800 hover:bg-orange-900 px-4 py-2 text-white rounded">
-                Sign up
-              </button>
-            </Link>
-          </div>
-        )}
-      </div>
+            </div>
+          ) : (
+            <div className="flex gap-4">
+              <Link to="/signin">
+                <button className="rounded bg-orange-800 px-4 py-2 text-white hover:bg-orange-900">
+                  Sign in
+                </button>
+              </Link>
+              <Link to="/signup">
+                <button className="rounded bg-orange-800 px-4 py-2 text-white hover:bg-orange-900">
+                  Sign up
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </nav>
     </header>
   );
 }

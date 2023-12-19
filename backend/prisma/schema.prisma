@@ -14,9 +14,8 @@ model User {
   email     String    @unique
   password  String
   createdAt DateTime  @default(now())
-  ratings   Rating[]
-  favorites Favorite[]
-  readBooks ReadStatus[]
+  readBooks   Read[]
+  toReadBooks  ToRead[]
 }
 
 model Book {
@@ -24,21 +23,11 @@ model Book {
   title       String
   author      String
   imageUrl    String?
-  ratings     Rating[]
-  favorites   Favorite[]
-  readStatus  ReadStatus[]
+  readBooks   Read[]
+  toReadBooks  ToRead[]
 }
 
-model Rating {
-  id     Int  @id @default(autoincrement())
-  score  Int
-  userId Int
-  bookId Int
-  user   User @relation(fields: [userId], references: [id])
-  book   Book @relation(fields: [bookId], references: [id])
-}
-
-model Favorite {
+model Read {
   id     Int  @id @default(autoincrement())
   userId Int
   bookId Int
@@ -46,11 +35,10 @@ model Favorite {
   book   Book @relation(fields: [bookId], references: [id])
 }
 
-model ReadStatus {
+model ToRead {
   id     Int  @id @default(autoincrement())
   userId Int
   bookId Int
-  read   Boolean @default(false)
   user   User @relation(fields: [userId], references: [id])
   book   Book @relation(fields: [bookId], references: [id])
 }
